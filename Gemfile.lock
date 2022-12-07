@@ -1,0 +1,21 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    chronic (0.10.2)
+    ffi (1.15.4)
+    geocoder (1.7.0)
+    minitest (5.14.4)
+    rake (13.0.6)
+
+PLATFORMS
+  arm64-darwin-21
+
+DEPENDENCIES
+  chronic
+  ffi
+  geocoder
+  minitest
+  rake
+
+BUNDLED WITH
+   2.2.33

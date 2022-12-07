@@ -21,11 +21,10 @@ module Rueph
   end
   
   def time_from_array(array)
-    #NOTE: Never Used
+    #NOTE: Never Used?
     time = Time.new(array[0], array[1], array[2]) + (array[3]*60*60)
   end
  
-  #TODO: remove time_array maybe, remove tz_offset for sure
   def off_set_time_array(time_array, tz_offset)
     time_array[3] -= tz_offset
     return time_array
@@ -44,7 +43,6 @@ module Rueph
     floored = (deg / 30.0).floor()
     return [SIGNS[floored], (deg - (floored * 30.0)).round]
   end
-  #TODO end refactor
 
   # 3.5.  Error handling and return values
   # swe_calc() (as well as swe_calc_ut(), swe_fixstar(), and 

@@ -32,4 +32,4 @@ To use Rueph in a closed source manner, all that is required is to go through th
 [Astrodienst procedure](https://www.astro.com/swisseph/swephinfo_e.htm#proflic) for acquiring a Swiss Ephemeris License. 
 
 NOTE: If you don't choose a Swiss Ephemeris Professional license, you MUST follow
-the guidelines of the AGPL3 -- which require you to open source your codebase.
+the guidelines of the AGPL3 -- which basically require you to open source your codebase.
