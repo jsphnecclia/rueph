@@ -25,8 +25,8 @@ complex.
 Rueph cannot function without the Swiss Ephemeris, but once you install the SE
 (through rake) you are required to fulfill the stricter licensing of the SE library,
 which is a dual licensing system -- Either the AGPL3 or the Swiss Ephemeris Professional
-License. Rueph is licensed this way to allow codebases to be either Open Source or
-Closed Source. 
+License. Rueph is licensed this way to allow codebases to be either Open Source (through the AGPL3) or
+Closed Source (through the Swiss Ephemeris Professional License). 
 
 To use Rueph in a closed source manner, all that is required is to go through the
 [Astrodienst procedure](https://www.astro.com/swisseph/swephinfo_e.htm#proflic) for acquiring a Swiss Ephemeris License. 
