@@ -8,7 +8,7 @@ rake
 Rueph is a Ruby Foreign Function Interface (FFI) to the Astrodient
 Swiss Ephemeris (SE) library (written in C).
 
-To see an example of how to use Rueph, look at the horoscli github.
+To see an example of how to use Rueph, look at the [horoscli github](https://github.com/jsphnecclia/horoscli).
 
 If you run into any problems, or functions that are in SE Library but
 not in Rueph, bring it up on github! As of now, the Rueph functions are
