@@ -52,7 +52,8 @@ module Rueph
   # or a warning can be returned in the string parameter serr.
 
   #def self.calc(time_array, planet, flags)
-  def calc(planet, time = time_to_array(Time.now), flags: (FLG_SWIEPH + FLG_SPEED))
+  def calc(planet, time = time_to_array(Time.now), topocentric: false, flags: (FLG_SWIEPH + FLG_SPEED))
+    # To use topocentric, you must first call Rueph::set_topo
     #TODO: is time here before or after time is offset for timezone
     #time_array to time used?
     #time_array = self.time_to_array(time_array) if time_array.is_a? Time
@@ -64,7 +65,9 @@ module Rueph
     # and a pointer to its error string
     retpntr = FFI::MemoryPointer.new(:double, 6)
     errstring = FFI::MemoryPointer.new(:char, 255)
-    iflgret = Rueph::calc_ut(julday, planet, flags, retpntr, errstring)
+    iflgret = Rueph::calc_ut(julday, planet, 
+                             topocentric ? (flags + FLG_TOPOCTR) : (flags), 
+                             retpntr, errstring)
 
     # Gets data from the pointer
     # then frees the memory
@@ -117,6 +120,17 @@ module Rueph
     
     
     return ret_array
+  end
+
+  # 3 doubles for geogr. longitude, latitude, height above sea.
+  #   double geolon,      * eastern longitude is positive, western negative
+  #   double geolat,      * northern latitude is positive, southern negative
+  #   double altitude);
+  #
+  #   Pass calc topocentric: true to enable Topographic calculations
+  #
+  def set_topo(longitude, latitude, altitude)
+    RuephBase::set_topo(longitude, latitude, altitude)
   end
 
   def retrograde?(planet, time = time_to_array(Time.now))

@@ -108,8 +108,6 @@ module RuephBase
   # ALL FIXSTAR FUNCTIONS REQUIRE sefstars.txt
   attach_function :fixstar_ut, :swe_fixstar_ut, [:star_name, :double, :long, :coordinates, :cstring], :int
 
-  #TODO: Add to class instance
-  #set_topo(longitude, latitude, altitude)
   attach_function :set_topo, :swe_set_topo, [:double, :double, :double], :void
 
   #TODO:3.2.1 Additional asteroids

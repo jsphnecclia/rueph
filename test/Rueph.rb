@@ -38,6 +38,10 @@ class RuephTest < Minitest::Test
     assert Rueph::reset_time_array([2021, 12, 16, 2.5], -1) == [2021, 12, 16, 1.5]
   end
 
+  def test_auto_time_calc
+    assert Rueph::calc(Rueph::MOON) == Rueph::calc(Rueph::MOON, Rueph::time_to_array(Time.now))
+  end
+
   def test_deg_to_sign
     assert Rueph::deg_to_sign(20.0) == "ARIES"
   end
@@ -52,6 +56,17 @@ class RuephTest < Minitest::Test
     calc.map!(&:round)
 
     assert calc == [51, -1, 0, 12, 1, 0]
+  end
+
+  def test_set_topo
+    calc_without = Rueph::calc(Rueph::MOON, [2021, 12, 16, 1.5])
+    Rueph::set_topo(20, 20, 1)
+
+    calc_topoctr = Rueph::calc(Rueph::MOON, [2021, 12, 16, 1.5], topocentric: true)
+    calc_second_without = Rueph::calc(Rueph::MOON, [2021, 12, 16, 1.5])
+    
+    assert calc_without != calc_topoctr
+    assert calc_without == calc_second_without
   end
 
   def test_version
