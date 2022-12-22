@@ -11,7 +11,7 @@ Swiss Ephemeris (SE) library (written in C).
 To see an example of Rueph in use, look at the [horoscli github](https://github.com/jsphnecclia/horoscli).
 
 If you run into any problems, or **functions that are in SE Library but**
-**not in Ruephi**, bring it up on github or (preferably!) send me an email
+**not in Rueph**, bring it up on github or (preferably!) send me an email
 at parkermcgowan@horos.today! As of now, the Rueph functions are
 only configured to support horoscli and a daily astrolunar calendar at www.horos.today
 (However, do not look in the horos.today source code for an example of Rueph, horos.today
