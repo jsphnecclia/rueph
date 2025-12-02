@@ -25,7 +25,7 @@
 
 # SEE DUAL_LICENSE FOR MORE INFORMATION
 
-require_relative 'ruephbase.rb'
+require_relative 'RuephBase'
 
 module Rueph
   include RuephBase

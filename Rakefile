@@ -1,28 +1,38 @@
-require "rake/testtask"
+# vibe coded Rakefile. Not entirely sure how it works
+# RUN FROM INSIDE RUEPH DIRECTORY
 
-task :default => [:clean, :c_build, :get_ephe]
+require "fileutils"
+
+# SwissEph moved to Github
+SWEPH_REPO = "https://github.com/aloistr/swisseph.git"
+SWEPH_DIR  = "swisseph"
+
+task default: %i[clean c_build get_ephe]
 
 task :clean do
-  `rm src/libswe.so`
-  `rm -rf src`
-  `rm -rf doc`
-  `rm -rf ephe`
+  FileUtils.rm_f  "src/libswe.so"
+  FileUtils.rm_rf %w[src ephe swisseph doc]
 end
 
 task :c_build do
-  `curl -O https://www.astro.com/ftp/swisseph/swe_unix_src_2.10.02.tar.gz`
-  `tar xvf swe_unix_src_2.10.02.tar.gz`
-  `cd src && make libswe.so`
-  `rm swe_unix_src_2.10.02.tar.gz`
+  sh "git clone --depth=1 #{SWEPH_REPO} #{SWEPH_DIR}" unless Dir.exist?(SWEPH_DIR)
+
+  FileUtils.mkdir_p "src"
+
+  # Build libswe.so in the root of the repo
+  sh "make -C #{SWEPH_DIR} clean libswe.so"
+
+  FileUtils.cp File.join(SWEPH_DIR, "libswe.so"), "src/libswe.so"
 end
 
 task :get_ephe do
-  `mkdir ephe`
-  `curl -O --output-dir ephe https://www.astro.com/ftp/swisseph/ephe/seas_12.se1`
-  `curl -O --output-dir ephe https://www.astro.com/ftp/swisseph/ephe/seas_18.se1`
-  `curl -O --output-dir ephe https://www.astro.com/ftp/swisseph/ephe/sefstars.txt`
-  `curl -O --output-dir ephe https://www.astro.com/ftp/swisseph/ephe/semo_12.se1`
-  `curl -O --output-dir ephe https://www.astro.com/ftp/swisseph/ephe/semo_18.se1`
-  `curl -O --output-dir ephe https://www.astro.com/ftp/swisseph/ephe/sepl_12.se1`
-  `curl -O --output-dir ephe https://www.astro.com/ftp/swisseph/ephe/sepl_18.se1`
+  FileUtils.mkdir_p "ephe"
+
+  # Copy only *files* from swisseph/ephe into our ephe/
+  Dir.glob(File.join(SWEPH_DIR, "ephe", "**", "*")).each do |path|
+    next unless File.file?(path)
+
+    FileUtils.cp path, "ephe/"
+  end
 end
+
