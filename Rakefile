@@ -1,4 +1,4 @@
-# vibe coded Rakefile. Not entirely sure how it works
+# Not entirely sure how this works be wary
 # RUN FROM INSIDE RUEPH DIRECTORY
 
 require "fileutils"
